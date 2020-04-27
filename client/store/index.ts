@@ -4,11 +4,11 @@ interface Tag {
 }
 
 interface State {
-  tags: Tag[] | null;
+  tags: Tag[];
 }
 
 const initialStore: State = {
-  tags: null
+  tags: []
 };
 
 export const state = () => {
@@ -17,13 +17,12 @@ export const state = () => {
 
 export const mutations = {
   setTag(state: State, tag: Tag) {
-    state.tags = [tag, ...state.tags];
+    state.tags.unshift(tag);
   }
 };
 
 export const actions = {
-  formatTag({ commit }, tagMessage: any) {
-    console.log("incoming tag", tagMessage);
+  formatTag({ commit }, tagMessage: Tag) {
     commit("setTag", tagMessage);
   }
 };
