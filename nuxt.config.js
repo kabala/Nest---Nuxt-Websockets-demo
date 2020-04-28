@@ -44,12 +44,9 @@ export default {
   io: {
     sockets: [
       {
-        name: "tasks",
-        url: "http://localhost:3000",
-        default: true,
-        vuex: {
-          mutations: [{ msgToClient: "setTag" }]
-        }
+        name: "tags",
+        url: "http://localhost:3001",
+        default: true
       }
     ]
   },

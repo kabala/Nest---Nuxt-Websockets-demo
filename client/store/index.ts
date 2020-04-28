@@ -1,7 +1,4 @@
-interface Tag {
-  name: string;
-  color: string;
-}
+import { Tag } from "../../shared/interfaces";
 
 interface State {
   tags: Tag[];
@@ -22,7 +19,7 @@ export const mutations = {
 };
 
 export const actions = {
-  formatTag({ commit }, tagMessage: Tag) {
-    commit("setTag", tagMessage);
+  formatTag({ commit }, tag: Tag) {
+    commit("setTag", tag);
   }
 };

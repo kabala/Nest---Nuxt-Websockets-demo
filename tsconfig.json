@@ -14,7 +14,7 @@
     "paths": {
       "~/*": ["client/*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@types/socket.io"]
+    "types": ["@types/node", "@nuxt/types", "@types/socket.io", "@types/jest"]
   },
   "include": ["server/**/*", "client/**/*"]
 }
