@@ -7,7 +7,7 @@
             <label for="tag-text">Enter new tag</label>
             <input
               id="tag-text"
-              placeholder="tag"
+              placeholder="Añadir etiqueta"
               aria-required="false"
               v-model.trim="$v.tagText.$model"
               type="text"
@@ -49,11 +49,10 @@
 
 <script>
 import Vue from "vue";
-import { validationMixin } from "vuelidate";
-import { minLength, maxLength, alphaNum } from "vuelidate/lib/validators";
 import { mapState, mapMutations } from "vuex";
 import tinycolor from "tinycolor2";
-import { Tag } from "../../shared/interfaces";
+import { validationMixin } from "vuelidate";
+import { tagInputValidators } from "~/utils/commons";
 import createRandomColor from "~/utils/color";
 import TagList from "~/components/organisms/TagList.vue";
 
@@ -67,16 +66,7 @@ export default Vue.extend({
     };
   },
   validations: {
-    tagText: {
-      minLength: minLength(3),
-      maxLength: maxLength(12),
-      alphaNum
-    }
-  },
-  watch: {
-    tagText() {
-      console.log("st", this.$v.tagText);
-    }
+    tagText: { ...tagInputValidators }
   },
   computed: {
     ...mapState(["tags"])
@@ -86,7 +76,6 @@ export default Vue.extend({
     checkTag() {
       if (this.tagText) {
         this.$refs.tagInput.blur();
-        console.log("s", this.$v.tagText.$error);
         if (this.isNameExistent) this.isNameExistent = false;
 
         if (this.tags.findIndex(tag => tag.name === this.tagText) > -1) {
@@ -98,7 +87,7 @@ export default Vue.extend({
 
         if (!this.$v.$error) {
           const color = this.generateColor();
-          const newTag = { name: this.tagText, color };
+          const newTag = { name: this.tagText.toLowerCase(), color };
           this.socket.emit("tagToServer", newTag);
         }
       }
@@ -110,10 +99,8 @@ export default Vue.extend({
       }
       return newColor;
     },
-    editTag(prevTag) {
-      const nextTag = "";
-      console.log("edit", { prevTag, nextTag });
-      this.socket.emit("editTag", { prevTag, nextTag });
+    editTag({ prevTag, newTag }) {
+      this.socket.emit("editTag", { prevTag, newTag });
     },
     deleteTag(tagName) {
       console.log("del", tagName);

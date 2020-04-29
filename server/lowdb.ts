@@ -25,12 +25,12 @@ export class Lowdb {
       .write();
   }
 
-  edit(prevName: string, newName: string): void {
+  edit(prevTag: string, newTag: string): void {
     const db = this.socketdb;
     return db
       .get(this.dbpath)
-      .find({ name: prevName })
-      .assign({ name: newName })
+      .find({ name: prevTag })
+      .assign({ name: newTag })
       .write();
   }
 

@@ -8,7 +8,7 @@ import {
 } from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
 import { Logger } from "@nestjs/common";
-import { Tag } from "../../shared/interfaces";
+import { Tag, EditTags } from "../../shared/interfaces";
 import { Lowdb } from "../lowdb";
 
 @WebSocketGateway(3001, {
@@ -47,12 +47,12 @@ export class TagGateway
   }
 
   @SubscribeMessage("editTag")
-  editTag(client: Socket, { tagPrev, tagNext }) {
-    this.lowdb.edit(tagPrev, tagNext);
+  editTag(client: Socket, { prevTag, newTag }: EditTags) {
+    this.lowdb.edit(prevTag, newTag);
     this.getTagList();
   }
 
-  afterInit(server: any) {
+  afterInit(server: Server) {
     this._logger.log("Initialized!");
   }
 
