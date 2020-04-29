@@ -19,8 +19,15 @@ button {
   cursor: pointer;
 }
 
-button {
+input[type="text"] {
+  border: medium none;
 
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
   border: medium none;
   outline: none;
 }

@@ -1,38 +1,44 @@
 <template>
   <div role="listitem" class="tag-item">
-    <div class="tag__desc">
+    <div class="tag-item__desc">
       <i
         aria-hidden="true"
-        class="tag__color"
+        class="tag-item__color"
         :style="{ backgroundColor: `${tag.color}` }"
       ></i>
-      <div role="form" v-if="editMode">
+      <div class="tag-item__edit" role="form" v-if="editMode">
         <form @submit.prevent="validateTagName">
           <input
             :aria-label="`Editar etiqueta '${tag.name}'`"
-            class="tag__edit"
+            class="tag-item__edit"
             type="text"
             v-model.trim="$v.editText.$model"
             ref="editInput"
           />
-          <button type="submit" class="tag__save">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+          <button type="submit" class="tag-item__save">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              preserveAspectRatio="xMinYMin"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path :d="saveIcon"></path>
             </svg>
           </button>
         </form>
       </div>
-      <span v-else role="text" class="tag__name">{{ tag.name }}</span>
+      <span v-else role="text" class="tag-item__name">{{ tag.name }}</span>
       <div class="tag__warning" v-if="$v.$error" role="alert">
         <span>No es posible guardar la etiqueta con ese formato.</span>
       </div>
     </div>
-    <div class="tag__actions">
+    <div v-if="!editMode" class="tag-item__actions">
+      <button class="outline" @click="$emit('deleteTag', tag.name)">
+        borrar
+      </button>
       <button @click="toggleEditMode">
         editar
-      </button>
-      <button @click="$emit('deleteTag', tag.name)">
-        borrar
       </button>
     </div>
   </div>

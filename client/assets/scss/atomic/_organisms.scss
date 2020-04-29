@@ -10,14 +10,9 @@
     }
 
     input {
-      border: medium none;
       flex: 1 0 auto;
-      font-size: 1.6em;
+      font-size: 1.4em;
       font-weight: 300;
-
-      &:focus {
-        outline: none;
-      }
     }
 
     button {
@@ -36,8 +31,105 @@
   &-item {
     $p: &;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5em;
+    height: 54px;
+
+    button {
+
+      &:hover,
+      &.outline:hover {
+        color: white;
+        background-color: $neutral-text-color;
+        border-color: $neutral-text-color;
+
+        path {
+          fill: white;
+        }
+      }
+    }
+
+    &:hover {
+      background-color: rgba($l-gray, 0.2);
+    }
+
+    &__desc {
+      display: flex;
+      align-items: center;
+      flex: 1 0 auto;
+    }
+
     &+#{$p} {
-      margin-top: 0.5em;
+      border-top: 1px solid $l-gray;
+    }
+
+    &__color {
+      display: inline-block;
+      border-radius: 8px;
+      width: 10px;
+      height: 10px;
+      margin-right: 1em;
+    }
+
+    &__name {
+      font-weight: 600;
+      font-size: 1.2em;
+      height: 28px;
+      line-height: 28px;
+    }
+
+    &__actions {
+      button {
+        color: $neutral-text-color;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        border-radius: 12px;
+        height: 24px;
+        margin-left: 0.6em;
+        line-height: 24px;
+        padding: 0 1em;
+
+        &.outline {
+          background-color: transparent;
+          border: 1px solid $l-gray;
+        }
+      }
+
+    }
+
+    &__edit {
+      flex: 1 0 auto;
+
+      form {
+        display: flex;
+        align-items: center;
+
+        input {
+          font-size: 1.2em;
+          height: 28px;
+        }
+      }
+    }
+
+    &__save {
+      border-radius: 14px;
+      height: 28px;
+      padding: 0 1em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.5em;
+
+      svg {
+        width: 21px;
+        height: 21px;
+
+        path {
+          fill: $neutral-text-color
+        }
+      }
     }
   }
 }
