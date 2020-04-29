@@ -1,19 +1,29 @@
-<p align="center"><img align="center" style="width:200px" src="https://i.imgur.com/kwbpUvy.png"/></p>
 
-# Nest.js Nuxt.js integration
+# Nest.js Nuxt.js Tag Editor Demo
 
 > Easy to use [Nest.js](https://nestjs.com/) and [Nuxt.js](https://nuxtjs.org) integration
 
+## Coverage
+* Integration between Nuxt and Nestjs
+* Websockets Gateway connected with a db provider (lowdb)
+* Mounted websockets client in Nuxt interacting with vuex and local state
+* Simple Crud operations using Websockets
+* Styling using sass
+
+## TO DO
+* Unit Tests in Client and Server
+* Convert all Nuxt components to TS classes
+* Better coverage of nuxt-socket-io with Vuex
 ## Build Setup
 
 ```bash
 # install dependencies
-$ npm install
+$ yarn install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ yarn dev
 
 # build for production and launch server
-$ npm run build
-$ npm run start
+$ yarb build
+$ yarn start
 ```
