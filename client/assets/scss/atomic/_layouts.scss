@@ -1,0 +1,18 @@
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+.default-layout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.tag-page {
+  width: 100%;
+  max-width: 600px;
+  margin: 2em 0;
+}

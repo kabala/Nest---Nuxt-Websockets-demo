@@ -1,25 +1,26 @@
 <template>
-  <main>
+  <main class="tag-page">
+    <div class="tag-title">
+      <h1>Editor de Etiquetas <span>Acme Magnum</span></h1>
+    </div>
     <div role="form" class="tag">
       <form class="tag__form" @submit.prevent="checkTag">
-        <div role="group">
-          <div>
-            <label for="tag-text">Enter new tag</label>
-            <input
-              id="tag-text"
-              placeholder="Añadir etiqueta"
-              aria-required="false"
-              v-model.trim="$v.tagText.$model"
-              type="text"
-              ref="tagInput"
-              @focus="
-                () => {
-                  if (tagWarning) tagWarning = null;
-                }
-              "
-            />
-          </div>
-          <button type="submit">Add Tag</button>
+        <div class="tag__wrapper" role="group">
+          <input
+            id="tag-text"
+            placeholder="Añadir etiqueta"
+            aria-required="false"
+            v-model.trim="$v.tagText.$model"
+            type="text"
+            ref="tagInput"
+            aria-label="Añadir etiqueta"
+            @focus="
+              () => {
+                if (tagWarning) tagWarning = null;
+              }
+            "
+          />
+          <button type="submit">Añadir</button>
         </div>
         <div v-if="tagWarning" class="tag__warning" role="none">
           <span role="alert">{{ tagWarning }}</span>
@@ -103,7 +104,6 @@ export default Vue.extend({
       this.socket.emit("editTag", { prevTag, newTag });
     },
     deleteTag(tagName) {
-      console.log("del", tagName);
       this.socket.emit("deleteTag", tagName);
     }
   },

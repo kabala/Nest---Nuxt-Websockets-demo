@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: $text-color;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  overflow-x: hidden;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+button {
+
+  border: medium none;
+  outline: none;
+}

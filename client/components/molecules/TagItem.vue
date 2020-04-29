@@ -1,5 +1,5 @@
 <template>
-  <div role="listitem" class="tag">
+  <div role="listitem" class="tag-item">
     <div class="tag__desc">
       <i
         aria-hidden="true"
