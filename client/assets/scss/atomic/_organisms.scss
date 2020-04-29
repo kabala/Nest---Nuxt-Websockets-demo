@@ -28,6 +28,23 @@
     }
   }
 
+  &__warning {
+    color: $warning-text;
+    background-color: $l-warning;
+    margin-top: 0.5em;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    border: 1px dashed $warning;
+    border-left: medium none;
+    border-right: medium none;
+    padding: 0.5em 0;
+
+    li+li {
+      margin-top: 0.5em;
+    }
+  }
+
   &-item {
     $p: &;
 
@@ -78,6 +95,17 @@
       font-size: 1.2em;
       height: 28px;
       line-height: 28px;
+    }
+
+    &__warning {
+      color: $warning-text;
+      background-color: $l-warning;
+      border: 1px dashed $warning;
+      border-radius: 14px;
+      margin: 0 0.5em;
+      height: 28px;
+      line-height: 28px;
+      padding: 0 1em;
     }
 
     &__actions {
@@ -133,7 +161,3 @@
     }
   }
 }
-
-
-
-.tags {}

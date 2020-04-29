@@ -15,6 +15,9 @@
             v-model.trim="$v.editText.$model"
             ref="editInput"
           />
+          <div class="tag-item__warning" v-if="$v.$error" role="alert">
+            <span>Formato incorrecto.</span>
+          </div>
           <button type="submit" class="tag-item__save">
             <svg
               width="22"
@@ -29,9 +32,6 @@
         </form>
       </div>
       <span v-else role="text" class="tag-item__name">{{ tag.name }}</span>
-      <div class="tag__warning" v-if="$v.$error" role="alert">
-        <span>No es posible guardar la etiqueta con ese formato.</span>
-      </div>
     </div>
     <div v-if="!editMode" class="tag-item__actions">
       <button class="outline" @click="$emit('deleteTag', tag.name)">
