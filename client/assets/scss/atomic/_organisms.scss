@@ -161,3 +161,37 @@
     }
   }
 }
+
+.home {
+
+  &__links,
+  &__headline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+  }
+
+  &__headline {
+    flex-direction: column;
+  }
+
+  &__links {
+
+    a {
+      color: $text-color;
+      background-color: $gray;
+      text-decoration: none;
+      font-size: 1.6em;
+      border-radius: 28px;
+      height: 56px;
+      line-height: 56px;
+      padding: 0 1em;
+
+      &:hover {
+        color: white;
+        background-color: $text-color;
+      }
+    }
+  }
+}
