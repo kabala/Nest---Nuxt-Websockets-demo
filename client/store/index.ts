@@ -15,11 +15,8 @@ export const state = () => {
 export const mutations = {
   setTag(state: State, tag: Tag) {
     state.tags.unshift(tag);
-  }
-};
-
-export const actions = {
-  formatTag({ commit }, tag: Tag) {
-    commit("setTag", tag);
+  },
+  setTags(state: State, tags: Tag[]) {
+    state.tags = tags;
   }
 };

@@ -18,11 +18,13 @@
     "@nestjs/websockets": "^7.0.9",
     "@nuxt/typescript-runtime": "^0.4.6",
     "@nuxtjs/axios": "^5.3.6",
+    "lowdb": "^1.0.0",
     "nuxt": "^2.0.0",
     "nuxt-socket-io": "^1.0.25",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "tinycolor2": "^1.4.1",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.1.2",
@@ -33,6 +35,8 @@
     "@types/socket.io": "^2.1.4",
     "ts-node": "^8.8.2",
     "tsconfig-paths": "^3.9.0",
+    "vue-class-component": "^7.2.3",
+    "vue-property-decorator": "^8.4.2",
     "webpack-cli": "^3.3.0",
     "webpack-shell-plugin": "^0.5.0"
   }

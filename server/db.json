@@ -1,0 +1,27 @@
+{
+  "tags": [{
+      "name": "balance",
+      "color": "#8447EB"
+    },
+    {
+      "name": "completada",
+      "color": "#47D2EB"
+    },
+    {
+      "name": "cancelada",
+      "color": "#EBE247"
+    },
+    {
+      "name": "local",
+      "color": "#EB8F47"
+    },
+    {
+      "name": "pagado",
+      "color": "#6047EB"
+    },
+    {
+      "name": "transferencia",
+      "color": "#47D4EB"
+    }
+  ]
+}

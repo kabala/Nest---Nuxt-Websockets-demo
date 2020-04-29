@@ -2,11 +2,14 @@ import {
   SubscribeMessage,
   WebSocketGateway,
   OnGatewayInit,
-  WebSocketServer
+  WebSocketServer,
+  OnGatewayConnection,
+  OnGatewayDisconnect
 } from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
 import { Logger } from "@nestjs/common";
 import { Tag } from "../../shared/interfaces";
+import { Lowdb } from "../lowdb";
 
 @WebSocketGateway(3001, {
   serveClient: false,
@@ -14,17 +17,50 @@ import { Tag } from "../../shared/interfaces";
   path: "/websockets",
   namespace: "/tag"
 })
-export class TagGateway implements OnGatewayInit {
+export class TagGateway
+  implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+  constructor(private lowdb: Lowdb) {}
+
   @WebSocketServer() wss: Server;
 
   private _logger: Logger = new Logger("TagGateway");
+
+  private getTagList() {
+    this.wss.emit("tagsToClient", this.lowdb.showAll());
+  }
+
+  @SubscribeMessage("tagToServer")
+  handleTag(client: Socket, tag: Tag) {
+    this.lowdb.add(tag);
+    this.getTagList();
+  }
+
+  @SubscribeMessage("getTags")
+  showTags(client: Socket) {
+    this.getTagList();
+  }
+
+  @SubscribeMessage("deleteTag")
+  deleteTag(client: Socket, tagName: string) {
+    this.lowdb.remove(tagName);
+    this.getTagList();
+  }
+
+  @SubscribeMessage("editTag")
+  editTag(client: Socket, { tagPrev, tagNext }) {
+    this.lowdb.edit(tagPrev, tagNext);
+    this.getTagList();
+  }
 
   afterInit(server: any) {
     this._logger.log("Initialized!");
   }
 
-  @SubscribeMessage("tagToServer")
-  handleMessage(client: Socket, tag: Tag) {
-    this.wss.emit("tagToClient", tag);
+  handleDisconnect(client: Socket) {
+    this._logger.log(`Client disconnected: ${client.id}`);
+  }
+
+  handleConnection(client: Socket, ...args: any[]) {
+    this._logger.log(`Client connected: ${client.id}`);
   }
 }
