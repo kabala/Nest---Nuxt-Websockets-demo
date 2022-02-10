@@ -20,7 +20,7 @@
     "@nuxt/typescript-runtime": "^0.4.6",
     "@nuxtjs/axios": "^5.3.6",
     "lowdb": "^1.0.0",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "nuxt-socket-io": "^1.0.25",
     "reflect-metadata": "^0.1.13",
